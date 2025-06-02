@@ -122,8 +122,40 @@ Scanner::nextToken()
         else if (lexeme == "public") tok = new Token(PUBLIC, lexeme);
         else if (lexeme == "static") tok = new Token(STATIC, lexeme);
         else if (lexeme == "String") tok = new Token(STRING, lexeme);
-        // mexer para identificar system.out.println como um único token
-        // else if (lexeme == "System.out.println") tok = new Token(SYSTEM_OUT_PRINTLN, lexeme);
+        else if (lexeme == "System"){
+            bool isSOP = false;
+            string sop = lexeme;
+
+            if (pos < input.length() && input[pos] == '.') {
+                sop += '.';
+                pos++;
+
+                // verificando se tem out
+                if (pos + 2 < input.length() && input.substr(pos, 3) == "out") { //pega 3 caracteres de pos (pos + 2) e input.substr avança pos em 3 se for válido.
+                    sop += 'out';
+                    pos += 3;
+
+                    // verificando .
+                    if (pos < input.length() && input[pos] == '.') {
+                        sop += '.';
+                        pos++;
+
+                        // verificando println
+                        if (pos + 6 < input.length() && input.substr(pos, 7) == "println") {
+                            sop += 'println';
+                            pos += 7;
+                            isSOP = true;
+                            tok = new Token(SYSTEM_OUT_PRINTLN, sop);
+                        }
+                    }   
+                }   
+            }
+
+            if (!isSOP) {
+                lexicalError("'" + lexeme + "' deve ser escrito acompanhado de '.out.println'");
+            }
+            
+        }
         else if (lexeme == "this") tok = new Token(THIS, lexeme);
         else if (lexeme == "true") tok = new Token(TRUE, lexeme);
         else if (lexeme == "void") tok = new Token(VOID, lexeme);
