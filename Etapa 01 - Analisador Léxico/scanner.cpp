@@ -165,7 +165,45 @@ Scanner::nextToken()
                     pos++;
                 }
                 break;
-            // terminar os cases
+            case '!':
+                if (pos + 1 < input.length() && input[pos+1] == '=') {
+                    tok = new Token(OP_NE, "!=");
+                    pos += 2;
+                } else {
+                    tok = new Token(OP_NOT, "!");
+                    pos++;
+                }
+                break;
+            case '<':
+                if (pos < input.length()) {
+                    tok = new Token(OP_LT, "<");
+                    pos++;
+                }
+            case '>':
+                if (pos < input.length()) {
+                    tok = new Token(OP_BT, ">");
+                    pos++;
+                }
+            case '+':
+                if (pos < input.length()) {
+                    tok = new Token(OP_PLUS, "+");
+                    pos++;
+                }
+            case '-':
+                if (pos < input.length()) {
+                    tok = new Token(OP_MINUS, "-");
+                    pos++;
+                }
+            case '*':
+                if (pos < input.length()) {
+                    tok = new Token(OP_MULT, "*");
+                    pos++;
+                }
+            case '/':
+                if (pos < input.length()) {
+                    tok = new Token(OP_DIV, "/");
+                    pos++;
+                }
             default:
                 lexicalError("Caractere não reconhecido: " + string(1, current));
                 
