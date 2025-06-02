@@ -122,7 +122,8 @@ Scanner::nextToken()
         else if (lexeme == "public") tok = new Token(PUBLIC, lexeme);
         else if (lexeme == "static") tok = new Token(STATIC, lexeme);
         else if (lexeme == "String") tok = new Token(STRING, lexeme);
-        else if (lexeme == "System.out.println") tok = new Token(SYSTEM_OUT_PRINTLN, lexeme);
+        // mexer para identificar system.out.println como um único token
+        // else if (lexeme == "System.out.println") tok = new Token(SYSTEM_OUT_PRINTLN, lexeme);
         else if (lexeme == "this") tok = new Token(THIS, lexeme);
         else if (lexeme == "true") tok = new Token(TRUE, lexeme);
         else if (lexeme == "void") tok = new Token(VOID, lexeme);
@@ -146,7 +147,7 @@ Scanner::nextToken()
 
     // operadores/separadores
     else {
-        
+
     }
     
 
