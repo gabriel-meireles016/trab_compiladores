@@ -147,7 +147,30 @@ Scanner::nextToken()
 
     // operadores/separadores
     else {
-
+        switch (current) {
+            case '&':
+                if (pos + 1 < input.length() && input[pos + 1] == '&') {
+                    tok = new Token(OP_AND, "&&");
+                    pos += 2;
+                } else {
+                    lexicalError("Operador '&' inválido.");
+                }
+                break;
+            case '=':
+                if (pos + 1 < input.length() && input[pos + 1] == '=') {
+                    tok = new Token(OP_EQ, "==");
+                    pos += 2;
+                } else {
+                    tok = new Token(OP_ASSIGN, "=");
+                    pos++;
+                }
+                break;
+            // terminar os cases
+            default:
+                lexicalError("Caractere não reconhecido: " + string(1, current));
+                
+                
+        }
     }
     
 
