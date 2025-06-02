@@ -237,17 +237,11 @@ Scanner::nextToken()
                     pos++;
                 }
             default:
-                lexicalError("Caractere não reconhecido: " + string(1, current));
-                
-                
+                lexicalError("Caractere não reconhecido: " + string(1, current));    
         }
     }
     
-
-
-
     return tok;
- 
 }
 
 void 
