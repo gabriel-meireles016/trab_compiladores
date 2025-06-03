@@ -52,9 +52,10 @@ Scanner::nextToken()
                 line++;
                 pos++;
                 continue;
+            } else {
+                pos++;
+                continue;
             }
-            pos++;
-            continue;
         }
 
         // comentário só da linha (//)
