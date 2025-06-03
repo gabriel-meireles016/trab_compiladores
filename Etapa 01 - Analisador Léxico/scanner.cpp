@@ -47,12 +47,14 @@ Scanner::nextToken()
 
     // ignorando espaços em branco e comentários
     while (pos < input.length()) {
-        if (input[pos] = ' ' || input[pos] == '\t' || input[pos] == '\n') {
+        if (input[pos] == ' ' || input[pos] == '\t' || input[pos] == '\n') {
             if (input[pos] == '\n') {
                 line++;
                 pos++;
                 continue;
             }
+            pos++;
+            continue;
         }
 
         // comentário só da linha (//)
