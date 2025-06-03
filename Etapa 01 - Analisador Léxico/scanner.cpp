@@ -27,7 +27,7 @@ Scanner::Scanner(string input)
     //A próxima linha deve ser comentada posteriormente.
     //Ela é utilizada apenas para verificar se o 
     //preenchimento de input foi feito corretamente.
-    cout << this->input;
+    // cout << this->input;
 
 }
 
@@ -99,6 +99,7 @@ Scanner::nextToken()
     
     // identifica token
     char current = input[pos];
+    printf(&current);
 
     // IDs e palavras reservadas
 
@@ -135,7 +136,7 @@ Scanner::nextToken()
 
                 // verificando se tem out
                 if (pos + 2 < input.length() && input.substr(pos, 3) == "out") { //pega 3 caracteres de pos (pos + 2) e input.substr avança pos em 3 se for válido.
-                    sop += 'out';
+                    sop += "out";
                     pos += 3;
 
                     // verificando .
@@ -145,7 +146,7 @@ Scanner::nextToken()
 
                         // verificando println
                         if (pos + 6 < input.length() && input.substr(pos, 7) == "println") {
-                            sop += 'println';
+                            sop += "println";
                             pos += 7;
                             isSOP = true;
                             tok = new Token(SYSTEM_OUT_PRINTLN);
@@ -214,78 +215,93 @@ Scanner::nextToken()
                     tok = new Token(OP_LT);
                     pos++;
                 }
+                break;
             case '>':
                 if (pos < input.length()) {
                     tok = new Token(OP_BT);
                     pos++;
                 }
+                break;
             case '+':
                 if (pos < input.length()) {
                     tok = new Token(OP_PLUS);
                     pos++;
                 }
+                break;
             case '-':
                 if (pos < input.length()) {
                     tok = new Token(OP_MINUS);
                     pos++;
                 }
+                break;
             case '*':
                 if (pos < input.length()) {
                     tok = new Token(OP_MULT);
                     pos++;
                 }
+                break;
             case '/':
                 if (pos < input.length()) {
                     tok = new Token(OP_DIV);
                     pos++;
                 }
+                break;
             case '(':
                 if (pos < input.length()) {
                     tok = new Token(SEP_LPAREN);
                     pos++;
                 }
+                break;
             case ')':
                 if (pos < input.length()) {
                     tok = new Token(SEP_RPAREN);
                     pos++;
                 }
+                break;
             case '[':
                 if (pos < input.length()) {
                     tok = new Token(SEP_LBRACKET);
                     pos++;
                 }
+                break;
             case ']':
                 if (pos < input.length()) {
                     tok = new Token(SEP_RBRACKET);
                     pos++;
                 }
+                break;
             case '{':
                 if (pos < input.length()) {
                     tok = new Token(SEP_LBRACE);
                     pos++;
                 }
+                break;
             case '}':
                 if (pos < input.length()) {
                     tok = new Token(SEP_RBRACE);
                     pos++;
                 }
+                break;
             case ';':
                 if (pos < input.length()) {
                     tok = new Token(SEP_SEMICOLON);
                     pos++;
                 }
+                break;
             case '.':
                 if (pos < input.length()) {
                     tok = new Token(SEP_DOT);
                     pos++;
                 }
+                break;
             case ',':
                 if (pos < input.length()) {
                     tok = new Token(SEP_COMMA);
                     pos++;
                 }
+                break;
             default:
-                lexicalError("Caractere não reconhecido: " + string(1, current));    
+                lexicalError("Caractere nao reconhecido: " + string(1, current));    
         }
     }
     
