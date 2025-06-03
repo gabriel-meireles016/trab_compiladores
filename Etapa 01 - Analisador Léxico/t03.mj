@@ -1,0 +1,8 @@
+INTEGER_LITERAL thayna, gabriel, infinito = 0, 0, 0;
+boolean amor = true
+
+if(thayna + gabriel == infinito){
+    amor = amor + 100000;
+} else {
+    amor !!;
+}
