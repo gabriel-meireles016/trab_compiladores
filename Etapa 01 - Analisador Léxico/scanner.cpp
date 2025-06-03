@@ -239,6 +239,51 @@ Scanner::nextToken()
                     tok = new Token(OP_DIV);
                     pos++;
                 }
+            case '(':
+                if (pos < input.length()) {
+                    tok = new Token(SEP_LPAREN);
+                    pos++;
+                }
+            case ')':
+                if (pos < input.length()) {
+                    tok = new Token(SEP_RPAREN);
+                    pos++;
+                }
+            case '[':
+                if (pos < input.length()) {
+                    tok = new Token(SEP_LBRACKET);
+                    pos++;
+                }
+            case ']':
+                if (pos < input.length()) {
+                    tok = new Token(SEP_RBRACKET);
+                    pos++;
+                }
+            case '{':
+                if (pos < input.length()) {
+                    tok = new Token(SEP_LBRACE);
+                    pos++;
+                }
+            case '}':
+                if (pos < input.length()) {
+                    tok = new Token(SEP_RBRACE);
+                    pos++;
+                }
+            case ';':
+                if (pos < input.length()) {
+                    tok = new Token(SEP_SEMICOLON);
+                    pos++;
+                }
+            case '.':
+                if (pos < input.length()) {
+                    tok = new Token(SEP_DOT);
+                    pos++;
+                }
+            case ',':
+                if (pos < input.length()) {
+                    tok = new Token(SEP_COMMA);
+                    pos++;
+                }
             default:
                 lexicalError("Caractere não reconhecido: " + string(1, current));    
         }
