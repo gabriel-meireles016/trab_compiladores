@@ -4,5 +4,5 @@ boolean amor = true
 if(thayna + gabriel == infinito){
     amor = amor + 100000;
 } else {
-    amor !!;
+    amor !!&&&;
 }
