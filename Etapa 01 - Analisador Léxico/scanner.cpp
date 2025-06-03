@@ -78,8 +78,8 @@ Scanner::nextToken()
             while (pos < input.length() && !(input[pos] == '*' && (pos + 1) < input.length() && input[pos + 1] == '/')) {
                 if (input[pos] == '\n') {
                     line++;
-                    pos++;
                 }
+                pos++;
             }
             
             if (pos >= input.length()) {
@@ -99,7 +99,6 @@ Scanner::nextToken()
     
     // identifica token
     char current = input[pos];
-    printf(&current);
 
     // IDs e palavras reservadas
 
