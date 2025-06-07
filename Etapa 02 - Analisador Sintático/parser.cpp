@@ -249,6 +249,35 @@ Parser::methodDeclaration()
 }
 
 void
+Parser::params()
+{
+	if (lToken->name == INT || lToken->name == BOOLEAN || lToken->name == ID)
+	{
+		advance();
+		type();
+		if (lToken->name == ID)
+		{
+			advance();
+			while (lToken->name == SEP_COMMA)
+			{
+				advance();
+				type();
+				if (lToken->name == ID)
+				{
+					advance();
+				} else {
+					error("Sem id depois de ', type'");
+				}
+			}
+		} else {
+			error("Sem id depois de params->type");
+		}
+	} else {
+		error("Sem INT, id ou boolean");
+	}
+}
+
+void
 Parser::op()
 {
 	if (lToken->name == OP_AND)
