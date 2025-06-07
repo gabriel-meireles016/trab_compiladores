@@ -278,6 +278,27 @@ Parser::params()
 }
 
 void
+Parser::type()
+{
+	if (lToken->name == INT)
+	{
+		advance();
+		if (lToken->name == SEP_LBRACKET)
+		{
+			advance();
+			match(SEP_RBRACKET);
+			
+		}
+	} else if (lToken->name == BOOLEAN || lToken->name == ID) {
+		advance();
+	} else {
+		error("Sem INT, ID ou BOOLEAN esperados em type");
+	}
+	
+	
+}
+
+void
 Parser::op()
 {
 	if (lToken->name == OP_AND)
