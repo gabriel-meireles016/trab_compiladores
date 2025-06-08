@@ -36,6 +36,7 @@ Parser::program()
     mainClass();
 	while(lToken->name == CLASS) 
 	{
+		advance();
 		classDeclaration();
 	}
 	if (lToken->name == EOF) 
@@ -157,10 +158,12 @@ Parser::classDeclaration()
 				advance();
 				while (lToken->name == INT || lToken->name == BOOLEAN || lToken->name == ID)
 				{
+					advance();
 					varDeclaration();	
 				}
 				while (lToken->name == PUBLIC)
 				{
+					advance();
 					methodDeclaration();
 				}
 				match(SEP_RBRACE);
@@ -214,10 +217,12 @@ Parser::methodDeclaration()
 					advance();
 					while (lToken->name == INT || lToken->name == BOOLEAN || lToken->name == ID)
 					{
+						advance();
 						varDeclaration();
 					}
 					while (lToken->name == SEP_LBRACE || lToken->name == IF || lToken->name == WHILE || lToken->name == SYSTEM_OUT_PRINTLN || lToken->name == ID)
 					{
+						advance();
 						statement();
 					}
 					if (lToken->name == RETURN)
@@ -251,29 +256,23 @@ Parser::methodDeclaration()
 void
 Parser::params()
 {
-	if (lToken->name == INT || lToken->name == BOOLEAN || lToken->name == ID)
+	type();
+	if (lToken->name == ID)
 	{
 		advance();
-		type();
-		if (lToken->name == ID)
+		while (lToken->name == SEP_COMMA)
 		{
 			advance();
-			while (lToken->name == SEP_COMMA)
+			type();
+			if (lToken->name == ID)
 			{
 				advance();
-				type();
-				if (lToken->name == ID)
-				{
-					advance();
-				} else {
-					error("Sem id depois de ', type'");
-				}
+			} else {
+				error("Sem segundo ID depois do ,type");
 			}
-		} else {
-			error("Sem id depois de params->type");
 		}
 	} else {
-		error("Sem INT, id ou boolean");
+		error("Sem ID");
 	}
 }
 
@@ -294,8 +293,199 @@ Parser::type()
 	} else {
 		error("Sem INT, ID ou BOOLEAN esperados em type");
 	}
-	
-	
+}
+
+void
+Parser::statement()
+{
+	if (lToken->name == SEP_LBRACE)
+	{
+		advance();
+		while (lToken->name == SEP_LBRACE || lToken->name == IF || lToken->name == WHILE || lToken->name == SYSTEM_OUT_PRINTLN || lToken->name == ID)
+		{
+			advance();
+			statement();
+		}
+		match(SEP_RBRACE);
+	} else if (lToken->name == IF)
+	{
+		advance();
+		if (lToken->name == SEP_LPAREN)
+		{
+			advance();
+			expression();
+			match(SEP_RPAREN);
+			statement();
+			if (lToken->name == ELSE)
+			{	
+				advance();
+				statement();
+			} else {
+				error("Sem else");
+			}
+			
+		} else {
+			error("Sem parenteses no if");
+		}
+	} else if (lToken->name == WHILE)
+	{
+		advance();
+		if (lToken->name == SEP_LPAREN)
+		{
+			advance();
+			expression();
+			match(SEP_RPAREN);
+			statement();
+		} else {
+			error("Sem parenteses depois do while");
+		}
+	} else if (lToken->name == SYSTEM_OUT_PRINTLN)
+	{
+		advance();
+		if (lToken->name == SEP_LPAREN)
+		{
+			advance();
+			expression();
+			match(SEP_RPAREN);
+			if (lToken->name == SEP_SEMICOLON)
+			{
+				advance();
+			} else {
+				error("Sem ponto virgula no final");
+			}
+		} else {
+			error("Sem parenteses depois do system.out.println");
+		}
+	} else if (lToken->name == ID)
+	{
+		advance();
+		if (lToken->name == SEP_LBRACKET)
+		{
+			advance();
+			expression();
+			match(SEP_RBRACKET);
+		}
+		if (lToken->name == OP_ASSIGN)
+		{
+			advance();
+			expression();
+			if (lToken->name == SEP_SEMICOLON)
+			{
+				advance();
+			} else {
+				error("Sem ponto virgula no final");
+			}
+		} else {
+			error("Sem igual depois do ID");
+		}
+	}
+}
+
+void 
+Parser::expression()
+{
+	term();
+	expressionL();
+}
+
+void
+Parser::term()
+{
+	if (lToken->name == INTEGER_LITERAL)
+	{
+		advance();
+	} else if (lToken->name == TRUE)
+	{
+		advance();
+	} else if (lToken->name == FALSE)
+	{
+		advance();
+	} else if (lToken->name == ID)
+	{
+		advance();
+	} else if (lToken->name == THIS)
+	{
+		advance();
+	} else if (lToken->name == NEW)
+	{
+		advance();
+		if (lToken->name == INT)
+		{
+			advance();
+			if (lToken->name == SEP_LBRACKET)
+			{
+				advance();
+				expression();
+				match(SEP_RBRACKET);
+			} else {
+				error("sem colchetes");
+			}
+		} else if (lToken->name == ID) 
+		{
+			advance();
+			if (lToken->name == SEP_LPAREN)
+			{
+				advance();
+				match(SEP_RPAREN);
+			} else {
+				error("Sem parentesses");
+			}
+		} else {
+			error("errado depois do new");
+		}
+	} else if (lToken->name == OP_NOT)
+	{
+		advance();
+		term();
+	} else if (lToken->name == SEP_LPAREN)
+	{
+		advance();
+		expression();
+		match(SEP_RPAREN);
+	} else {
+		error("termo mal formado");
+	}
+}
+
+void
+Parser::expressionL()
+{
+	if (lToken->name == SEP_LBRACKET)
+	{
+		advance();
+		expression();
+		match(SEP_RBRACKET);
+		expressionL();
+	} else if (lToken->name == SEP_DOT)
+	{
+		advance();
+		if (lToken->name == LENGTH)
+		{
+			advance();
+			expressionL();
+		} else if (lToken->name == ID)
+		{
+			advance();
+			if (lToken->name == SEP_LPAREN)
+			{
+				advance();
+				if (lToken->name == INTEGER_LITERAL || lToken->name == TRUE || lToken->name == FALSE || lToken->name == ID || lToken->name == THIS|| lToken->name == NEW || lToken->name == OP_NOT || lToken->name ==SEP_LPAREN)
+				{
+					expressionList();
+					
+				} 
+				match(SEP_RPAREN);
+				expressionL();
+			}
+		} else {
+			error("o que vem depois do ponto tá errado");
+		}
+	} else {
+		// ;
+		op();
+		expression();
+		expressionL();
+	}
 }
 
 void
@@ -340,6 +530,17 @@ Parser::op()
 	else
 	{
 		error("Operação não existente");
+	}
+}
+
+void
+Parser::expressionList()
+{
+	expression();
+	while (lToken->name == SEP_COMMA)
+	{
+		advance();
+		expression();
 	}
 }
 
