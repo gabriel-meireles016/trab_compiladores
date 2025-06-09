@@ -8,7 +8,20 @@ class mei {
             while (i < 5) {
                 System.out.println(i);
                 i = i + 1;
+            }
         }
+    }
+}
+
+class thayna {
+    boolean love;
+    public int amando(int v[]) {
+        int eu;
+        if (true){
+            eu = 10;
+        } else{
+            eu = 9;
         }
+        return eu;
     }
 }
