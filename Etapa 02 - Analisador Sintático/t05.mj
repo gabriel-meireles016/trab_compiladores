@@ -1,0 +1,14 @@
+class mei {
+    public static void main(String[] args) {
+        {
+            int i;
+            int v[];
+            i = 0;
+            a = a.length;
+            while (i < 5) {
+                System.out.println(i);
+                i = i + 1;
+        }
+        }
+    }
+}
