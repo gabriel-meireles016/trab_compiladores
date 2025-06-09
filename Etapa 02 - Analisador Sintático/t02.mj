@@ -1,0 +1,21 @@
+class gabriel {
+    public static void main (String[] ID){
+        {
+            a = 2;
+            System.out.println(a);
+        }
+    }
+}
+
+class thayna {
+    boolean love;
+    public int amando() {
+        int eu;
+        if (true)
+            eu = 10;
+        else
+            eu = 9;
+
+        return eu;
+    }
+}
