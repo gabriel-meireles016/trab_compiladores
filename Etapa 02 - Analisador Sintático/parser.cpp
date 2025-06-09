@@ -471,8 +471,8 @@ Parser::expressionL()
 				advance();
 				if (lToken->name == INTEGER_LITERAL || lToken->name == TRUE || lToken->name == FALSE || lToken->name == ID || lToken->name == THIS|| lToken->name == NEW || lToken->name == OP_NOT || lToken->name ==SEP_LPAREN)
 				{
-					expressionList();
-					
+					advance();
+					expressionList();	
 				} 
 				match(SEP_RPAREN);
 				expressionL();
@@ -480,11 +480,14 @@ Parser::expressionL()
 		} else {
 			error("o que vem depois do ponto tá errado");
 		}
-	} else {
-		// ;
+	} else if (lToken->name == OP_AND || lToken->name == OP_LT || lToken->name == OP_BT || lToken->name == OP_EQ || lToken->name == OP_NE|| lToken->name == OP_PLUS || lToken->name == OP_MINUS || lToken->name == OP_MULT || lToken->name == OP_DIV)
+	{
+		advance();
 		op();
 		expression();
 		expressionL();
+	} else {
+		;
 	}
 }
 
