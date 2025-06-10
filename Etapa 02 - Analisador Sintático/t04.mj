@@ -1,0 +1,27 @@
+class thayna {
+    public static void main(String[] parametro){
+        {
+            a = 3;
+            b = 5;
+            c = a + b;
+            System.out.println(c);
+        }
+    }
+}
+
+class gabriel {
+    boolean thay;
+    boolean mei;
+
+    public int meina(thayna thay, int gabriel) {
+        int d;
+        int e;
+
+        if (true) {
+
+        } else {
+
+        }
+        return a;
+    }
+}

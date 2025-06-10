@@ -1,4 +1,5 @@
 #include "parser.h"
+#include <iostream>
 
 Parser::Parser(string input)
 {
@@ -16,8 +17,10 @@ Parser::match(int t)
 {
 	if (lToken->name == t || lToken->attribute == t)
 		advance();
-	else
+	else{
+		std::cout << lToken->name << std::endl;
 		error("Erro inesperado");
+	}
 }
 
 void
@@ -36,10 +39,9 @@ Parser::program()
     mainClass();
 	while(lToken->name == CLASS) 
 	{
-		advance();
 		classDeclaration();
 	}
-	if (lToken->name == EOF) 
+	if (lToken->name == END_OF_FILE)
 	{
 		advance();
 	} else {
@@ -158,12 +160,10 @@ Parser::classDeclaration()
 				advance();
 				while (lToken->name == INT || lToken->name == BOOLEAN || lToken->name == ID)
 				{
-					advance();
 					varDeclaration();	
 				}
 				while (lToken->name == PUBLIC)
 				{
-					advance();
 					methodDeclaration();
 				}
 				match(SEP_RBRACE);
@@ -217,12 +217,10 @@ Parser::methodDeclaration()
 					advance();
 					while (lToken->name == INT || lToken->name == BOOLEAN || lToken->name == ID)
 					{
-						advance();
 						varDeclaration();
 					}
 					while (lToken->name == SEP_LBRACE || lToken->name == IF || lToken->name == WHILE || lToken->name == SYSTEM_OUT_PRINTLN || lToken->name == ID)
 					{
-						advance();
 						statement();
 					}
 					if (lToken->name == RETURN)
@@ -303,7 +301,6 @@ Parser::statement()
 		advance();
 		while (lToken->name == SEP_LBRACE || lToken->name == IF || lToken->name == WHILE || lToken->name == SYSTEM_OUT_PRINTLN || lToken->name == ID)
 		{
-			advance();
 			statement();
 		}
 		match(SEP_RBRACE);
@@ -375,8 +372,6 @@ Parser::statement()
 			} else {
 				error("Sem ponto virgula no final");
 			}
-		} else {
-			error("Sem igual depois do ID");
 		}
 	}
 }
@@ -471,7 +466,6 @@ Parser::expressionL()
 				advance();
 				if (lToken->name == INTEGER_LITERAL || lToken->name == TRUE || lToken->name == FALSE || lToken->name == ID || lToken->name == THIS|| lToken->name == NEW || lToken->name == OP_NOT || lToken->name ==SEP_LPAREN)
 				{
-					advance();
 					expressionList();	
 				} 
 				match(SEP_RPAREN);
@@ -482,7 +476,6 @@ Parser::expressionL()
 		}
 	} else if (lToken->name == OP_AND || lToken->name == OP_LT || lToken->name == OP_BT || lToken->name == OP_EQ || lToken->name == OP_NE|| lToken->name == OP_PLUS || lToken->name == OP_MINUS || lToken->name == OP_MULT || lToken->name == OP_DIV)
 	{
-		advance();
 		op();
 		expression();
 		expressionL();

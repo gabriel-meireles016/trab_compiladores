@@ -2,24 +2,14 @@ class mei {
     public static void main(String[] args) {
         {
             i = 0;
+            v[true] = 9;
+            i = 0;
             a = a.length;
             while (i < 5) {
                 System.out.println(i);
                 i = i + 1;
+                System.out.println(this.a(b, this.c, true, false, new int [a], new thay(), INTEGER_LITERAL, !this.length, (gabriel - thay.length)));
             }
         }
-    }
-}
-
-class thayna {
-    boolean love;
-    public int amando(int[] v) {
-        int eu;
-        if (true){
-            eu = 10;
-        } else{
-            eu = 9;
-        }
-        return eu;
     }
 }

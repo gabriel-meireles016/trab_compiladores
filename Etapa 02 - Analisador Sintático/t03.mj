@@ -8,3 +8,20 @@ class thayna {
         }
     }
 }
+
+class gabriel {
+    boolean thay;
+    boolean mei;
+
+    public int meina() {
+        int d;
+        int e;
+
+        if (true) {
+
+        } else {
+
+        }
+        return a;
+    }
+}
