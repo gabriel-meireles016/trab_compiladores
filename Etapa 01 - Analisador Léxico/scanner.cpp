@@ -125,6 +125,7 @@ Scanner::nextToken()
         else if (lexeme == "public") tok = new Token(PUBLIC);
         else if (lexeme == "static") tok = new Token(STATIC);
         else if (lexeme == "String") tok = new Token(STRING);
+        else if (lexeme == "return") tok = new Token(RETURN);
         else if (lexeme == "System"){
             bool isSOP = false;
             string sop = lexeme;
