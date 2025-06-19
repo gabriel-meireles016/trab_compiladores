@@ -184,10 +184,12 @@ Parser::methodDeclaration(Class* clazz)
   Method* method{};
 
   if (clazz)
-    if (method = clazz->addMethod(methodName, returnType, clazz))
+  {
+    if ((method = clazz->addMethod(methodName, returnType, clazz)))
       currentScope = method->scope();
     else
       report("Method '%s' already defined", methodName.c_str());
+  }
   if (lToken->name != SEP_LPAREN)
     error("'(' expected");
   advance();

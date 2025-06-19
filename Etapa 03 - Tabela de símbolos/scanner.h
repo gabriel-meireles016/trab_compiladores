@@ -1,3 +1,6 @@
+#ifndef __Scanner_h
+#define __Scanner_h
+
 #include "token.h"
 #include <fstream>
 
@@ -22,3 +25,5 @@ public:
 };
 
 using ScannerPtr = mjc::ObjectPtr<Scanner>;
+
+#endif // __Scanner_h

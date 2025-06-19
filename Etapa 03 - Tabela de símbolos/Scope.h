@@ -3,11 +3,8 @@
 
 #include "SymbolMap.h"
 
-namespace mjc
-{ // begin namespace mjc
-
-namespace symbol
-{ // begin namespace symbol
+namespace mjc::symbol
+{ // begin namespace mjc::symbol
 
 class Class;
 class Variable;
@@ -46,8 +43,6 @@ protected:
 
 using ScopePtr = ObjectPtr<Scope>;
 
-} // end namespace symbol
-
-} // end namespace mjc
+} // end namespace mjc::symbol
 
 #endif // __Scope_h

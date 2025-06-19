@@ -1,7 +1,7 @@
 #ifndef __GlobalScope_h
 #define __GlobalScope_h
 
-#include "Class.h"
+#include "Method.h"
 
 namespace mjc::symbol
 { // begin namespace mjc::symbol

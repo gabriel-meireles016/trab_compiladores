@@ -7,27 +7,9 @@ int main(int argc, char *argv[])
     // executado na linha de comando.
     if (argc != 2)
     {
-        cout << "Uso: ./compiler nome_arquivo.mj\n";
+        cout << "Usage: ./mj_compiler filename.mj\n";
         return 1;
     }
-
-    //string input;
-
-    // getline(cin, input);
-    // parte antiga da etapa 01 que chamava o scanner e retornava todos os tokens
-    /* Scanner *scanner = new Scanner(argv[1]);
-
-    Token *t;
-
-    
-    do
-    {
-        t = scanner->nextToken();
-
-        cout << t->name << " ";
-    } while (t->name != END_OF_FILE);
-
-    delete scanner; */
 
     Parser* parser = new Parser(argv[1]);
 
@@ -40,7 +22,9 @@ int main(int argc, char *argv[])
       // do nothing
     }
     delete parser;
+#ifdef _MSC_VER
     puts("Press any key to exit...");
     (void)getchar();
+#endif // _MSC_VER
     return 0;
 }
