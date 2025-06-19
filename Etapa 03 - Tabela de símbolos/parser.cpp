@@ -489,7 +489,7 @@ Parser::prefixExpression(const Class* clazz)
 
       advance();
       tryCast(expression(clazz), Type::Int());
-      match(SEP_LBRACKET);
+      match(SEP_RBRACKET);
       e = b ? Type::Int() : Type::error();
     }
     else if (lToken->name == SEP_DOT)
