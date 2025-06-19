@@ -1,0 +1,24 @@
+class thayna {
+    public static void main(String[] parametro){
+        {
+            
+        }
+    }
+}
+
+class gabriel {
+    boolean thay;
+    boolean mei;
+
+    public int meina(thayna thay, int gabriel) {
+        int d;
+        int e;
+
+        if (e == False) {
+
+        } else {
+
+        }
+        return d;
+    }
+}
