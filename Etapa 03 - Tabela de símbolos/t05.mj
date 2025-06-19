@@ -1,0 +1,20 @@
+class mei {
+    public static void main(String[] args) {
+        {
+            
+        }
+        }
+}
+
+class thayna {
+    boolean love;
+    public int amando(int[] v) {
+        int eu;
+        if (true){
+            eu = 10;
+        } else{
+            eu = 9;
+        }
+        return eu;
+    }
+}

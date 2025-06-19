@@ -1,0 +1,39 @@
+class maria {
+    public static void main(String[] parametro){
+        {
+            
+        }
+    }
+}
+
+class gabriel {
+    boolean thay;
+    boolean mei;
+
+    public boolean meina(maria thay) {
+        int d;
+        int e;
+        boolean gabriel;
+
+        if (true) {
+
+        } else {
+
+        }
+        
+        return gabriel;
+    }
+}
+
+class thayna extends gabriel {
+    public boolean meina(maria thay, boolean gabriel) {
+        int d, int e;
+
+        if (true) {
+
+        } else {
+
+        }
+        return false;
+    }
+}

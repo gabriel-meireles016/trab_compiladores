@@ -1,0 +1,29 @@
+class mei {
+    public static void main(String[] args) {
+        {
+
+            }
+    }
+}
+    
+class maria {
+    public int thayna(int thay) {
+        int i;
+        int[] v;
+        v = new int[10];
+        int a;
+        maria b;
+        b = new maria();
+        i = 0;
+        v[0] = 9;
+        a = v.length;
+        
+        while (i < 5) {
+            System.out.println(i);
+            i = i + 1;
+            System.out.println(this.thayna(b, true, false, new int [a]));
+        }
+
+        return 0;
+    }
+}
