@@ -419,7 +419,7 @@ Parser::logicalExpression(const Class* clazz)
     switch (lToken->name)
     {
       case OP_LT:
-      case OP_BT:
+      case OP_GT:
         break;
       default:
         return e1;

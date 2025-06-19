@@ -38,7 +38,7 @@ enum TokenType
   // &&, <, >, +, −, ∗, /, =, ==, != e !;
   OP_AND,
   OP_LT,
-  OP_BT,
+  OP_GT,
   OP_PLUS,
   OP_MINUS,
   OP_MULT,

@@ -119,20 +119,20 @@ Scanner::nextToken()
     }
 
     // verifica se é uma palavra reservada
-    if (lexeme == "boolean") tok = new Token(BOOLEAN);
-    else if (lexeme == "class") tok = new Token(CLASS);
-    else if (lexeme == "else") tok = new Token(ELSE);
-    else if (lexeme == "extends") tok = new Token(EXTENDS);
-    else if (lexeme == "false") tok = new Token(FALSE);
-    else if (lexeme == "if") tok = new Token(IF);
-    else if (lexeme == "int") tok = new Token(INT);
-    else if (lexeme == "length") tok = new Token(LENGTH);
-    else if (lexeme == "main") tok = new Token(MAIN);
-    else if (lexeme == "new") tok = new Token(NEW);
-    else if (lexeme == "public") tok = new Token(PUBLIC);
-    else if (lexeme == "static") tok = new Token(STATIC);
-    else if (lexeme == "String") tok = new Token(STRING);
-    else if (lexeme == "return") tok = new Token(RETURN);
+    if (lexeme == "boolean") tok = new Token(BOOLEAN, lexeme);
+    else if (lexeme == "class") tok = new Token(CLASS, lexeme);
+    else if (lexeme == "else") tok = new Token(ELSE, lexeme);
+    else if (lexeme == "extends") tok = new Token(EXTENDS, lexeme);
+    else if (lexeme == "false") tok = new Token(FALSE, lexeme);
+    else if (lexeme == "if") tok = new Token(IF, lexeme);
+    else if (lexeme == "int") tok = new Token(INT, lexeme);
+    else if (lexeme == "length") tok = new Token(LENGTH, lexeme);
+    else if (lexeme == "main") tok = new Token(MAIN, lexeme);
+    else if (lexeme == "new") tok = new Token(NEW, lexeme);
+    else if (lexeme == "public") tok = new Token(PUBLIC, lexeme);
+    else if (lexeme == "static") tok = new Token(STATIC, lexeme);
+    else if (lexeme == "String") tok = new Token(STRING, lexeme);
+    else if (lexeme == "return") tok = new Token(RETURN, lexeme);
     else if (lexeme == "System")
     {
       bool isSOP = false;
@@ -161,7 +161,7 @@ Scanner::nextToken()
               sop += "println";
               pos += 7;
               isSOP = true;
-              tok = new Token(SYSTEM_OUT_PRINTLN);
+              tok = new Token(SYSTEM_OUT_PRINTLN, sop);
             }
           }
         }
@@ -173,10 +173,10 @@ Scanner::nextToken()
       }
 
     }
-    else if (lexeme == "this") tok = new Token(THIS);
-    else if (lexeme == "true") tok = new Token(TRUE);
-    else if (lexeme == "void") tok = new Token(VOID);
-    else if (lexeme == "while") tok = new Token(WHILE);
+    else if (lexeme == "this") tok = new Token(THIS, lexeme);
+    else if (lexeme == "true") tok = new Token(TRUE, lexeme);
+    else if (lexeme == "void") tok = new Token(VOID, lexeme);
+    else if (lexeme == "while") tok = new Token(WHILE, lexeme);
     // se não, é um id
     else tok = new Token(ID, lexeme);
   }
@@ -204,7 +204,7 @@ Scanner::nextToken()
       case '&':
         if (pos + 1 < input.length() && input[pos + 1] == '&')
         {
-          tok = new Token(OP_AND);
+          tok = new Token(OP_AND, "&&");
           pos += 2;
         }
         else
@@ -215,129 +215,129 @@ Scanner::nextToken()
       case '=':
         if (pos + 1 < input.length() && input[pos + 1] == '=')
         {
-          tok = new Token(OP_EQ);
+          tok = new Token(OP_EQ, "==");
           pos += 2;
         }
         else
         {
-          tok = new Token(OP_ASSIGN);
+          tok = new Token(OP_ASSIGN, "=");
           pos++;
         }
         break;
       case '!':
         if (pos + 1 < input.length() && input[pos + 1] == '=')
         {
-          tok = new Token(OP_NE);
+          tok = new Token(OP_NE, "!=");
           pos += 2;
         }
         else
         {
-          tok = new Token(OP_NOT);
+          tok = new Token(OP_NOT, "!");
           pos++;
         }
         break;
       case '<':
         if (pos < input.length())
         {
-          tok = new Token(OP_LT);
+          tok = new Token(OP_LT, "<");
           pos++;
         }
         break;
       case '>':
         if (pos < input.length())
         {
-          tok = new Token(OP_BT);
+          tok = new Token(OP_GT, ">");
           pos++;
         }
         break;
       case '+':
         if (pos < input.length())
         {
-          tok = new Token(OP_PLUS);
+          tok = new Token(OP_PLUS, "+");
           pos++;
         }
         break;
       case '-':
         if (pos < input.length())
         {
-          tok = new Token(OP_MINUS);
+          tok = new Token(OP_MINUS, "-");
           pos++;
         }
         break;
       case '*':
         if (pos < input.length())
         {
-          tok = new Token(OP_MULT);
+          tok = new Token(OP_MULT, "*");
           pos++;
         }
         break;
       case '/':
         if (pos < input.length())
         {
-          tok = new Token(OP_DIV);
+          tok = new Token(OP_DIV, "/");
           pos++;
         }
         break;
       case '(':
         if (pos < input.length())
         {
-          tok = new Token(SEP_LPAREN);
+          tok = new Token(SEP_LPAREN, "(");
           pos++;
         }
         break;
       case ')':
         if (pos < input.length())
         {
-          tok = new Token(SEP_RPAREN);
+          tok = new Token(SEP_RPAREN, ")");
           pos++;
         }
         break;
       case '[':
         if (pos < input.length())
         {
-          tok = new Token(SEP_LBRACKET);
+          tok = new Token(SEP_LBRACKET, "[");
           pos++;
         }
         break;
       case ']':
         if (pos < input.length())
         {
-          tok = new Token(SEP_RBRACKET);
+          tok = new Token(SEP_RBRACKET, "]");
           pos++;
         }
         break;
       case '{':
         if (pos < input.length())
         {
-          tok = new Token(SEP_LBRACE);
+          tok = new Token(SEP_LBRACE, "{");
           pos++;
         }
         break;
       case '}':
         if (pos < input.length())
         {
-          tok = new Token(SEP_RBRACE);
+          tok = new Token(SEP_RBRACE, "}");
           pos++;
         }
         break;
       case ';':
         if (pos < input.length())
         {
-          tok = new Token(SEP_SEMICOLON);
+          tok = new Token(SEP_SEMICOLON, ";");
           pos++;
         }
         break;
       case '.':
         if (pos < input.length())
         {
-          tok = new Token(SEP_DOT);
+          tok = new Token(SEP_DOT, ".");
           pos++;
         }
         break;
       case ',':
         if (pos < input.length())
         {
-          tok = new Token(SEP_COMMA);
+          tok = new Token(SEP_COMMA, ",");
           pos++;
         }
         break;
