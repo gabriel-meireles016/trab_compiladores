@@ -307,7 +307,7 @@ Parser::statement(const Class* clazz)
     if (lToken->name != SEP_LPAREN)
       error("'(' expected");
     advance();
-    expression(clazz);
+    tryCast(expression(clazz), Type::Boolean());
     match(SEP_RPAREN);
     statement(clazz);
     if (lToken->name != ELSE)
@@ -321,7 +321,7 @@ Parser::statement(const Class* clazz)
     if (lToken->name != SEP_LPAREN)
       error("'(' expected");
     advance();
-    expression(clazz);
+    tryCast(expression(clazz), Type::Boolean());
     match(SEP_RPAREN);
     return statement(clazz);
   }
