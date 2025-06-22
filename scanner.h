@@ -7,20 +7,14 @@
 class Scanner: public mjc::SharedObject
 {
 private:
-  string input; // Armazena o texto de entrada
-  int pos{}; // Posição atual
+  string input;
+  int pos{};
   int line{1};
 
 public:
-  // Construtor
   Scanner(const string&);
-
   int getLine();
-
-  // Método que retorna o próximo token da entrada
   Token* nextToken();
-
-  // Método para manipular erros
   void lexicalError(const string&);
 };
 

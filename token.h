@@ -11,7 +11,7 @@ using namespace std;
 enum TokenType
 {
   UNDEF,
-  // palavras reservadas
+  // reserved words
   BOOLEAN,
   CLASS,
   ELSE,
@@ -31,9 +31,9 @@ enum TokenType
   TRUE,
   VOID,
   WHILE,
-  // sequência de letras, dígitos e underscores
+  // sequence of letters or symbols
   ID,
-  // sequência de dígitos decimais
+  // sequence of numbers
   INTEGER_LITERAL,
   // &&, <, >, +, −, ∗, /, =, ==, != e !;
   OP_AND,
@@ -57,7 +57,7 @@ enum TokenType
   SEP_SEMICOLON,
   SEP_DOT,
   SEP_COMMA,
-  // fim do arquivo
+  // end of file
   END_OF_FILE
 };
 
